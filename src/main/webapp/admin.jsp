@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <%--
   Created by IntelliJ IDEA.
   User: tosya
@@ -28,11 +27,10 @@ name ${name}, age ${age}
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="User" items="${list}">
-        <tr>
-            <td>${list.name}</td>
-            <td>${list.age}</td>
-        </tr>
+    <c:forEach items="${list } " var="userList">
+    <tr>
+        <td>${userList.name() }   ${userList.age() } </td>
+    </tr>
     </c:forEach>
     </tbody>
 </table>
