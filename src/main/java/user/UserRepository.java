@@ -11,7 +11,7 @@ public class UserRepository {
     private Connection connection = null;
 
     public Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         if (connection == null) {
             connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
         }
@@ -19,7 +19,7 @@ public class UserRepository {
     }
 
     public List<User> executeQuery(String sql) {
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = new ArrayList<>();
         try (Statement statement = getConnection().createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
@@ -53,7 +53,7 @@ public class UserRepository {
     }
 
     public User mapObject(ResultSet resultSet) throws SQLException {
-        User user = null;
+        User user = new User();
         user.setLogin(resultSet.getString("LOGIN"));
         user.setName(resultSet.getString("NAME"));
         user.setAge(resultSet.getInt("AGE"));
