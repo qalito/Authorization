@@ -1,6 +1,7 @@
 package servlets;
 
 import user.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,12 +22,11 @@ public class LoginServlet extends HttpServlet {
                 req.setAttribute("login", user.getLogin());
                 req.setAttribute("name", user.getName());
                 req.setAttribute("age", user.getAge());
+                req.setAttribute("role", user.getRole());
                 if (user.getRole() == UserRole.ADMIN) {
-                    path = "/admin.jsp";
-                    req.setAttribute("list", userService.getListOfUsers(user));
-                } else {
-                    path = "/home.jsp";
+                    req.setAttribute("listUser", userService.getListOfUsers(user));
                 }
+                path = "/home.jsp";
             } catch (Exception e) {
                 req.setAttribute("warring", "Sign in failed");
                 path = "/index.jsp";
